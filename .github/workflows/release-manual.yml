@@ -68,8 +68,7 @@ jobs:
           echo "PREVIOUS_TAG=$(git describe --tags --abbrev=0)" >> "${GITHUB_OUTPUT}"
 
       - name: 'Run Tests'
-        if: |-
-          ${{ github.event.inputs.force_skip_tests != true }}
+        if: "${{github.event.inputs.force_skip_tests != 'true'}}"
         uses: './.github/actions/run-tests'
         with:
           gemini_api_key: '${{ secrets.GEMINI_API_KEY }}'
